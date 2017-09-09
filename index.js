@@ -4,7 +4,7 @@ var cors = require('cors');
 var Members = require('./models/members');
 
 app.get('/members', cors(), function (req, res) {
-  Members.fetchAll().then(function (members) {
+  Members.fetchAll({withRelated: 'subscription'}).then(function (members) {
     res.json({error: false, data: members.toJSON()});
   })
   .catch(function(error) {
